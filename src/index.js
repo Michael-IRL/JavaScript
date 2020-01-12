@@ -4,7 +4,7 @@ function test() {
 	return;
 }
 
-import('./print.js').then(module => {
+import('./components/print.js').then(module => {
 	module.print('Hello World');
 });
 

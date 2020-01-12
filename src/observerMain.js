@@ -1,10 +1,10 @@
-import { Task } from './task.js';
+import { Task } from './components/task.js';
 import {
 	NotificationService,
 	LoggingService,
 	AuditingService
-} from './services.js';
-import { ObservableTask } from './obserableTask.js';
+} from './components/services.js';
+import { ObservableTask } from './components/obserableTask.js';
 
 let notifiy = new NotificationService();
 let log = new LoggingService();
