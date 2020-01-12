@@ -1,33 +1,31 @@
 import { Task } from './task.js';
 import { ObserverList } from './observerList.js';
 
-let ObservableTask = function(data) {
-	Task.call(this, data);
-	this.observers = new ObserverList();
-};
-
-ObservableTask.prototype.addObserver = function(observer) {
-	this.observers.add(observer);
-};
-
-ObservableTask.prototype.noifiy = function(context) {
-	let observerCount = this.observers.count();
-	for (let i = 0; i < observerCount; i++) {
-		this.observers.get(i)(context);
+class ObservableTask extends Task {
+	constructor(data) {
+		super(data);
+		this.observers = new ObserverList();
 	}
-};
 
-ObservableTask.prototype.save = function() {
-	this.noifiy(this);
-	Task.prototype.save.call(this);
-};
+	addObserver(observer) {
+		this.observers.add(observer);
+	}
 
-ObservableTask.prototype.complete = function() {
-	Task.prototype.complete.call(this);
-};
+	noifiy(context) {
+		let observerCount = this.observers.count();
+		for (let i = 0; i < observerCount; i++) {
+			this.observers.get(i)(context);
+		}
+	}
 
-ObservableTask.prototype.removeObserver = function(observer) {
-	this.observers.removeAt(this.observers.indexOf(observer, 0));
-};
+	save() {
+		this.noifiy(this);
+		Task.prototype.save.call(this);
+	}
+
+	removeObserver(observer) {
+		this.observers.removeAt(this.observers.indexOf(observer, 0));
+	}
+}
 
 export { ObservableTask };
