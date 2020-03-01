@@ -15,5 +15,8 @@
 	"devDependencies": {
 		"esm": "^3.2.25",
 		"http-server": "^0.12.1"
+	},
+	"dependencies": {
+		"jquery": "^3.4.1"
 	}
 }
